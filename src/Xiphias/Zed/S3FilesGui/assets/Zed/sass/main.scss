@@ -1,0 +1,116 @@
+.s3-form-container {
+    display: flex;
+    flex-flow: wrap;
+    column-gap: 20px;
+}
+
+.s3-form-container > div {
+    flex:1;
+}
+
+span.bucket-name-helper {
+    display: none;
+}
+select.s3-bucket-select-field {
+    margin-bottom: 15px;
+}
+div.filter-wrapper {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: left;
+    align-items: baseline;
+    margin-bottom: 5px;
+
+}
+
+input.filter-field {
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media only screen and (max-width: 430px) {
+    select.s3-bucket-select-field {
+        width: 100%;
+    }
+
+    input.filter-field {
+        width: 100%;
+        margin: 4px 0 8px 0 ;
+
+    }
+}
+
+div.ibox-content {
+    min-height: 15rem;
+}
+
+#s3-bucket_checkbox {
+    width: 2%;
+}
+
+#s3-bucket_name {
+    width: 78%;
+}
+
+#s3-bucket_actions {
+    width: 20%;
+    text-align: center;
+}
+
+td.column-s3-bucket_actions {
+    text-align: center;
+}
+
+#scope_handle_selected_files {
+    display: flex;
+    width: 80%;
+}
+
+#s3_download_delete_selected_form_Delete {
+    margin-left: 1rem;
+}
+
+#load_more_data_form {
+    display: flex;
+    justify-content: end;
+}
+
+.confirm-delete-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.modal-body {
+    background-color: #fff;
+    span {
+        color: #000;
+        font-size: 14px;
+    }
+}
+
+.modal-header h5 {
+    color: #000;
+    text-transform: uppercase;
+
+}
+
+.btn-modal-delete {
+    background: #f2392e;
+    border-color: #f2392e;
+    color: #fff !important;
+}
+
+.btn-modal-delete:hover {
+    background: #f2392e;
+    border-color: #f2392e;
+    color: #fff !important;
+}
+
+#modal-button-multiple-delete{
+    display: none;
+}
+
+
+

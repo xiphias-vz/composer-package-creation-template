@@ -1,0 +1,36 @@
+<div class="modal confirm-delete-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>{{ 's3.delete.confirmation' | trans }}</h5>
+
+                <div class="pull-right"></div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span>{{ 's3.delete.confirmation-message' | trans }}</span>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <ul class="list-inline m-b-none">
+                        <li><a href="#" class="btn btn-modal-delete btn-modal-delete-single" >{{ 's3.delete.file.confirm' | trans }}</a></li>
+                        <li>
+                            <button form="scope_handle_selected_files" type="submit" class="btn btn-modal-delete btn-modal-delete-multiple"
+                                    name='s3_download_delete_selected_form[Delete]'>
+                                {{ 's3.delete.multiple.confirm' | trans }}
+                            </button>
+                        </li>
+                        <li>
+                            <button type="submit" class="btn btn-primary btn-w-m btn-modal-primary" data-dismiss="modal">
+                                {{ 's3.delete.abort' | trans }}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

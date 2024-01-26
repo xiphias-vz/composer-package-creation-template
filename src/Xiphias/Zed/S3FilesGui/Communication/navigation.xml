@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <content>
+        <pages>
+            <s3-files>
+                <label>S3 files</label>
+                <title>S3 files</title>
+                <bundle>s3-files-gui</bundle>
+                <controller>index</controller>
+                <action>index</action>
+                <visible>1</visible>
+            </s3-files>
+        </pages>
+    </content>
+</config>

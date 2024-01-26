@@ -67,8 +67,8 @@ npm-debug.log
 !/tests/_support/_generated/.gitkeep
 /codeception.local.yml
 
-/tests/PyzTest/*/*/_output/*
-/tests/PyzTest/*/*/_support/_generated/*
+/tests/XiphiasTest/*/*/_output/*
+/tests/XiphiasTest/*/*/_support/_generated/*
 
 /.robot/results
 

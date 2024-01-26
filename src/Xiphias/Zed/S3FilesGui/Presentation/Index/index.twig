@@ -1,0 +1,64 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set title = 'Overview of available S3 buckets' | trans %}
+
+{% block head_css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ assetsPath('css/s3-files-gui.css') }}">
+    <script type="text/javascript" src="{{  assetsPath('js/s3-files-gui.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="s3-form-container">
+        <div>
+            {% embed '@Gui/Partials/widget.twig' with { widget_title: 'S3 Buckets' | trans } %}
+                {% block widget_content %}
+                    {{ form_start(S3BucketForm, {'method': 'POST' }) }}
+                    {{ form_widget(S3BucketForm.s3_bucket_field, {'value': chosenBucket }) }}
+                    {{ form_end(S3BucketForm) }}
+                {% endblock %}
+            {% endembed %}
+        </div>
+        <div>
+
+            {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Upload file to S3 bucket' | trans } %}
+                {% block widget_content %}
+                    {{  form_start(S3UploadForm, {'method': 'POST'}) }}
+                    {{  form_end(S3UploadForm) }}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'List of S3 files' | trans } %}
+        {% block widget_content %}
+
+            <div class="filter-wrapper">
+                <label for="filter-field"> {{ 's3.filter.label' | trans }} </label>
+                <input type="search" class="form-control input-sm filter-field" name="filter-field" id="filter-field"
+                       value="{{ filterParam }}" placeholder="{{ 's3.filter.placeholder' | trans }}">
+                <button type="button" value="clear-filter" class="btn btn-primary btn-w-m btn-clear-filter">{{ 's3.filter.clear' | trans }}</button>
+            </div>
+
+            {{ S3BucketTable | raw }}
+
+            <div class="row">
+                <div class="col col-lg-8 col-md-8 col-sm-12">
+                    {{ form_start(S3DownloadDeleteSelectedForm, {'method': 'POST', 'attr': {'id': 'scope_handle_selected_files'}}) }}
+                    {{ form_end(S3DownloadDeleteSelectedForm) }}
+                </div>
+
+                <div class="col col-lg-4 col-md-4 col-sm-12">
+                    <form name="load_more_data_form" method="post" action="/s3-files-gui/index/load-data" id="load_more_data_form">
+                        <div class="form-group">
+                            <button type="button" id="load_more_data_form_LoadData" name="load_more_data_form[LoadData]" class="btn btn-outline btn-w-m btn">Load data</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% include '@S3FilesGui/_partials/confirm-delete-modal.twig' %}
+
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="S3Upload">
+        <property name="bucket" type="string"/>
+        <property name="uploadedFile" type="string"/>
+    </transfer>
+
+    <transfer name="S3UploadResponse">
+        <property name="s3Upload" type="S3Upload"/>
+        <property name="isSuccessful" type="bool" />
+        <property name="message" type="string" />
+    </transfer>
+
+    <transfer name="S3UploadValidator">
+        <property name="isValid" type="bool" />
+        <property name="errorMessage" type="string" />
+        <property name="bucket" type="string" />
+        <property name="redirectionTarget" type="string" />
+    </transfer>
+
+    <transfer name="S3FilesDownloadRequest">
+        <property name="bucketAndFileNames" type="BucketAndFileNames"/>
+    </transfer>
+
+    <transfer name="S3FilesDownloadResponse">
+        <property name="headers" type="array"/>
+        <property name="content" type="string"/>
+        <property name="isSuccessful" type="bool"/>
+    </transfer>
+
+    <transfer name="S3FilesResults">
+        <property name="successfulResults" type="S3DownloadResult[]"/>
+        <property name="errorResults" type="S3DownloadResult[]"/>
+        <property name="zipName" type="string"/>
+    </transfer>
+
+    <transfer name="S3DownloadResult">
+        <property name="isSuccessful" type="bool"/>
+        <property name="fileName" type="string"/>
+        <property name="fileContent" type="string"/>
+        <property name="errorMessage" type="string"/>
+        <property name="contentType" type="string"/>
+    </transfer>
+
+    <transfer name="S3ListObjectsResultTransfer">
+        <property name="contents" type="array"/>
+        <property name="maxKeys" type="int"/>
+        <property name="keyCount" type="int"/>
+        <property name="isTruncated" type="bool"/>
+        <property name="nextContinuationToken" type="string"/>
+    </transfer>
+
+    <transfer name="S3FilesDeleteRequest">
+        <property name="bucketAndFileNames" type="BucketAndFileNames"/>
+    </transfer>
+
+    <transfer name="S3FilesDeleteResponse">
+        <property name="S3FilesDeleteRequest" type="S3FilesDeleteRequest"/>
+        <property name="message" type="string"/>
+        <property name="isSuccessful" type="bool"/>
+    </transfer>
+
+    <transfer name="BucketAndFileNames">
+        <property name="bucketName" type="string"/>
+        <property name="fileNames" type="array"/>
+    </transfer>
+
+    <transfer name="CustomDataTable">
+        <property name="data" type="array"/>
+        <property name="configuration" type="array"/>
+        <property name="result" type="array"/>
+    </transfer>
+
+    <transfer name="LoadMoreData">
+        <property name="bucketName" type="string"/>
+        <property name="loadedTableData" type="array"/>
+        <property name="nextContinuationToken" type="string"/>
+    </transfer>
+
+</transfers>

@@ -1,6 +1,6 @@
 {
-    "name": "xiphias/composer-package-creation-template",
-    "description": "This is the template for developing and testing creation of composer packages",
+    "name": "xiphias/s3-files-gui",
+    "description": "Graphical user interface for S3 buckets on AWS",
     "autoload": {
         "psr-4": {
             "Xiphias\\": "src/Xiphias"
@@ -15,9 +15,27 @@
         {
             "name": "Filip Gojković",
             "email": "filip.gojkovic@xiphias.hr"
+        },
+        {
+            "name": "Filip Tolj",
+            "email": "filip.tolj@xiphias.hr"
+        },
+        {
+            "name": "Mihael Blažek",
+            "email": "mihael.blazek@xiphias.hr"
+        },
+        {
+            "name": "Javor Novosel",
+            "email": "javor.novosel@xiphias.hr"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=8.0",
+        "aws/aws-sdk-php": "*",
+        "spryker/session": "*",
+        "spryker/kernel": "^3.72.0",
+        "ext-zip": "*"
+    },
     "require-dev": {
         "spryker/code-sniffer": "*",
         "spryker/container": "*",

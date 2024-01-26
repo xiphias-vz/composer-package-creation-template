@@ -1,6 +1,7 @@
-namespace: SprykerTest
+namespace: S3FilesGui
 include:
-  - tests/XiphiasTest/Zed/ZedModuleTemplate
+  - tests/XiphiasTest/Zed/S3FilesGui
+
 paths:
   tests: tests/
   output: tests/_output/
