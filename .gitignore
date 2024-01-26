@@ -37,6 +37,7 @@ FOSS.md
 /data/*
 !/data/import/
 !/data/export/
+!/data/translation/
 
 # grunt stuff
 .grunt

@@ -25,8 +25,7 @@ suites:
                 - \SprykerTest\Shared\Testify\Helper\FactoryHelper
                 - \SprykerTest\Service\Container\Helper\ContainerHelper
                 - \SprykerTest\Shared\Testify\Helper\BundleConfig
-                - \SprykerTest\Shared\Testify\Helper\LocatorHelper:
-                    projectNamespaces: ['Pyz']
+                - \SprykerTest\Shared\Testify\Helper\LocatorHelper
 
     Communication:
         path: Communication
@@ -37,8 +36,7 @@ suites:
                 - \PyzTest\Shared\Testify\Helper\Environment
                 - \SprykerTest\Shared\Session\Helper\SessionHelper
                 - \SprykerTest\Shared\Testify\Helper\ConfigHelper
-                - \SprykerTest\Shared\Testify\Helper\LocatorHelper:
-                    projectNamespaces: [ 'Pyz' ]
+                - \SprykerTest\Shared\Testify\Helper\LocatorHelper
                 - \SprykerTest\Shared\Testify\Helper\DependencyHelper
                 - \SprykerTest\Shared\Propel\Helper\TransactionHelper
                 - \SprykerTest\Shared\Testify\Helper\DataCleanupHelper
@@ -66,7 +64,6 @@ suites:
                         - \Spryker\Zed\Gui\Communication\Plugin\Twig\FormRuntimeLoaderTwigPlugin
                         - \Spryker\Zed\Http\Communication\Plugin\Twig\RuntimeLoaderTwigPlugin
                         - \Spryker\Zed\ZedNavigation\Communication\Plugin\Twig\ZedNavigationTwigPlugin
-                        - \Pyz\Zed\Gui\Communication\Plugin\Twig\Buttons\Form\BackofficeLogoTwigExtensionPlugin
                     loaderPlugins:
                         - \Spryker\Zed\Gui\Communication\Plugin\Twig\GuiTwigLoaderPlugin
                 - \SprykerTest\Zed\Router\Helper\RouterHelper

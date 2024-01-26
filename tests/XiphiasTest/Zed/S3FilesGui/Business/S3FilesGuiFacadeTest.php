@@ -15,7 +15,7 @@ use Generated\Shared\DataBuilder\S3FilesDownloadRequestBuilder;
 use Generated\Shared\DataBuilder\S3FilesResultsBuilder;
 use Generated\Shared\DataBuilder\S3UploadBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
-use Pyz\Zed\S3FilesGui\Business\Model\ResponseBuilder\DownloadResponseBuilder;
+use Xiphias\Zed\S3FilesGui\Business\Model\ResponseBuilder\DownloadResponseBuilder;
 use XiphiasTest\Zed\S3FilesGui\S3FileGuiBusinessTester;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;

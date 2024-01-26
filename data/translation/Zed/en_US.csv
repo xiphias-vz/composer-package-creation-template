@@ -1,0 +1,14 @@
+s3.filter.label,"Filter by prefix on S3: "
+s3.filter.placeholder,Filter by prefix
+s3.filter.clear,Clear filter
+s3.form.not-valid,Form is not valid
+s3.form.missing-bucket,Please choose a bucket to upload to
+s3.upload.error,"File upload has failed! Please check your S3 credentials, access and user rights for selected bucket"
+s3.upload.success,%s successfully uploaded to %s
+s3.delete.success,Files: %s deleted successfully from %s
+s3.delete.error,"File was not deleted successfully! Please check your S3 credentials, access and user rights for selected bucket"
+s3.delete.confirmation,Confirm File Deletion
+s3.delete.confirmation-message,Are you sure about deleting from S3?
+s3.delete.abort,"No, keep the file"
+s3.delete.file.confirm,"Yes, delete the file"
+s3.delete.multiple.confirm,"Yes, delete checked files"

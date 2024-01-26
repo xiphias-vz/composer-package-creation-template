@@ -11,7 +11,7 @@ use Codeception\Test\Unit;
 use Generated\Shared\DataBuilder\S3UploadBuilder;
 use Generated\Shared\DataBuilder\S3UploadValidatorBuilder;
 use Generated\Shared\Transfer\S3UploadValidatorTransfer;
-use Pyz\Zed\S3FilesGui\Business\Model\Validator\Validator;
+use Xiphias\Zed\S3FilesGui\Business\Model\Validator\Validator;
 use XiphiasTest\Zed\S3FilesGui\S3FileGuiBusinessTester;
 use Symfony\Component\Form\FormInterface;
 
