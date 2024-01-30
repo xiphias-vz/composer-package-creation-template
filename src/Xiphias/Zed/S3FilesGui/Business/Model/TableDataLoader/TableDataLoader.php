@@ -412,7 +412,7 @@ class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3
         $listObjectsPreviousResultTransfer = new S3ListObjectsResultTransfer();
         $maxNumberOfObjectsInResult = $params[static::MAX_KEYS];
 
-        $filterStringCombinations = array_unique([$filterString, strtoupper($filterString), strtolower($filterString), ucfirst($filterString)]);
+        $filterStringCombinations = array_unique([$filterString, strtoupper($filterString), strtolower($filterString), ucfirst(strtolower($filterString))]);
 
         foreach ($filterStringCombinations as $filterStringCombination) {
             if ($this->isFilterStringCombinationAlreadyUsed($filterStringCombination)) {
