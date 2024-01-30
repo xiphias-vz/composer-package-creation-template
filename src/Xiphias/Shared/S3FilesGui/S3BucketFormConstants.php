@@ -44,12 +44,12 @@ interface S3BucketFormConstants
     /**
      * @var string
      */
-    public const DOWNLOAD_SELECTED_BUTTON_CLASSES = 'btn btn-primary btn-w-m';
+    public const DOWNLOAD_SELECTED_BUTTON_CLASSES_DISABLED = 'btn btn-primary btn-w-m disabled';
 
     /**
      * @var string
      */
-    public const DELETE_SELECTED_BUTTON_CLASSES = 'btn btn-primary btn-danger btn-w-m';
+    public const DELETE_SELECTED_BUTTON_CLASSES_DISABLED = 'btn btn-primary btn-danger btn-w-m disabled';
 
     /**
      * @var string
@@ -119,7 +119,7 @@ interface S3BucketFormConstants
     /**
      * @var string
      */
-    public const BUTTON_SHOW_FILES_LABEL = 'Show';
+    public const BUTTON_SHOW_FILES_LABEL = 's3.button.show';
 
     /**
      * @var string
@@ -134,5 +134,15 @@ interface S3BucketFormConstants
     /**
      * @var string
      */
-    public const BUTTON_UPLOAD_LABEL = 'upload';
+    public const BUTTON_UPLOAD_LABEL = 's3.button.upload';
+
+    /**
+     * @var string
+     */
+    public const BUTTON_DOWNLOAD_LABEL = 's3.button.download';
+
+    /**
+     * @var string
+     */
+    public const BUTTON_DELETE_LABEL = 's3.button.delete';
 }

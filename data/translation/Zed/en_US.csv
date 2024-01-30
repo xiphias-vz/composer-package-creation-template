@@ -1,8 +1,16 @@
+s3.bucket.widget.title,S3 Buckets
+s3.button.delete,Delete
+s3.button.download,Download
+s3.button.show,Show
+s3.button.upload,Upload
+s3.button.load,Load data
 s3.filter.label,"Filter by prefix on S3: "
 s3.filter.placeholder,Filter by prefix
 s3.filter.clear,Clear filter
 s3.form.not-valid,Form is not valid
 s3.form.missing-bucket,Please choose a bucket to upload to
+s3.main.title,Overview of available S3 buckets
+s3.upload.widget.title,Upload file to S3 bucket
 s3.upload.error,"File upload has failed! Please check your S3 credentials, access and user rights for selected bucket"
 s3.upload.success,%s successfully uploaded to %s
 s3.delete.success,Files: %s deleted successfully from %s
@@ -12,3 +20,4 @@ s3.delete.confirmation-message,Are you sure about deleting from S3?
 s3.delete.abort,"No, keep the file"
 s3.delete.file.confirm,"Yes, delete the file"
 s3.delete.multiple.confirm,"Yes, delete checked files"
+s3.table.widget.title,List of S3 files

@@ -82,7 +82,11 @@ class S3BucketTable extends AbstractTable implements S3BucketConstants, S3Bucket
         $files = $this->tableDataLoader->listObjectsFromBucket($config, $formData, $numberOfRecordsPerRequest, $action);
         if ($files !== null && $files[static::BUCKET_FILES_DATA] !== null) {
             foreach ($files[static::BUCKET_FILES_DATA] as $file) {
-                $rowData = $this->formatRow($file);
+                if (is_array($file)) {
+                    $rowData = $this->formatRow($file[static::KEY]);
+                } else {
+                    $rowData = $this->formatRow($file);
+                }
 
                 $result[] = $rowData;
             }

@@ -13,7 +13,7 @@ use XiphiasTest\Zed\S3FilesGui\S3FileGuiCommunicationTester;
 /**
  * Auto-generated group annotations
  *
- * @group XiphiasTest
+ * @group PyzTest
  * @group Zed
  * @group S3FilesGui
  * @group Communication

@@ -115,7 +115,6 @@ class S3BucketFormDataProvider implements S3BucketConstants, S3BucketFormConstan
             if ($sessionBucket === null || $sessionBucket !== $s3BucketForm->getData()[static::S3_BUCKET_FIELD]) {
                 $this->setActionAndFormData($s3BucketForm->getData(), static::SHOW_BUTTON);
             }
-            $this->sessionMapper->clearUsedFilterStrings();
         }
 
         $this->tableDataLoader->handleTableAction();

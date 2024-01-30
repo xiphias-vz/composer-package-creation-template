@@ -1,8 +1,16 @@
+s3.bucket.widget.title,S3 Buckets
+s3.button.delete,Löschen
+s3.button.download,Herunterladen
+s3.button.show,Zeigen
+s3.button.upload,Hochladen
+s3.button.load,Lade Daten
 s3.filter.label,"Filtern Sie nach Präfix auf S3: "
 s3.filter.placeholder,Nach Präfix filtern
 s3.filter.clear,Filter löschen
 s3.form.not-valid,Das Formular ist ungültig
 s3.form.missing-bucket,Bitte wählen Sie einen Bucket zum Hochladen aus
+s3.main.title,Übersicht der verfügbaren S3-Buckets
+s3.upload.widget.title,Laden Sie der File in den S3-Bucket hoch
 s3.upload.error,"Das Hochladen der File ist fehlgeschlagen! Bitte überprüfen Sie Ihre S3-Anmeldeinformationen, Zugriffs- und Benutzerrechte für den ausgewählten Bucket"
 s3.upload.success,%s wurde erfolgreich auf %s hochgeladen
 s3.delete.success,Files: %s wurde erfolgreich aus %s gelöscht
@@ -12,4 +20,4 @@ s3.delete.confirmation-message,"Sind Sie sicher, dass Sie aus S3 löschen möcht
 s3.delete.abort,"Nein, behalten Sie die File"
 s3.delete.file.confirm,"Ja, löschen Sie die File"
 s3.delete.multiple.confirm,"Ja, markierte Files löschen"
-
+s3.table.widget.title,Liste der S3-Files

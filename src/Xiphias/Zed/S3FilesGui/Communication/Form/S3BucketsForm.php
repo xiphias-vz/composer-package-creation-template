@@ -80,11 +80,15 @@ class S3BucketsForm extends AbstractType implements S3BucketFormConstants, S3Buc
      */
     protected function addShowButton(FormBuilderInterface $builder): void
     {
-        $builder->add(static::BUTTON_SHOW_FILES_LABEL, SubmitType::class, [
+        $builder->add(
+            $this->getFactory()->getTranslatorFacade()->trans(static::BUTTON_SHOW_FILES_LABEL),
+            SubmitType::class,
+            [
             'attr' => [
                 'class' => static::BUTTON_SAFE_SUBMIT_CLASS,
             ],
-        ]);
+            ],
+        );
     }
 
     /**

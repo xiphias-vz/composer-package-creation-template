@@ -45,7 +45,7 @@
         <property name="contentType" type="string"/>
     </transfer>
 
-    <transfer name="S3ListObjectsResultTransfer">
+    <transfer name="S3ListObjectsResult">
         <property name="contents" type="array"/>
         <property name="maxKeys" type="int"/>
         <property name="keyCount" type="int"/>

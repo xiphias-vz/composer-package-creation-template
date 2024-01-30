@@ -9,16 +9,15 @@ namespace XiphiasTest\Zed\S3FilesGui\Business\Validator;
 
 use Codeception\Test\Unit;
 use Generated\Shared\DataBuilder\S3UploadBuilder;
-use Generated\Shared\DataBuilder\S3UploadValidatorBuilder;
-use Generated\Shared\Transfer\S3UploadValidatorTransfer;
 use Xiphias\Zed\S3FilesGui\Business\Model\Validator\Validator;
 use XiphiasTest\Zed\S3FilesGui\S3FileGuiBusinessTester;
+use Spryker\Zed\Translator\Business\TranslatorFacadeInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
  * Auto-generated group annotations
  *
- * @group XiphiasTest
+ * @group PyzTest
  * @group Zed
  * @group S3FilesGui
  * @group Business
@@ -42,14 +41,22 @@ class S3FilesGuiValidatorTest extends Unit
 
         // Arrange
         $formInterface = $this->createMock(FormInterface::class);
-        $formInterface->expects($this->any())->method('isSubmitted')->willReturn(true);
-        $formInterface->expects($this->any())->method('isValid')->willReturn(true);
+        $formInterface->expects($this->any())->method('isSubmitted')
+            ->willReturn(true);
+        $formInterface->expects($this->any())->method('isValid')
+            ->willReturn(true);
 
-        $validatorClass = new Validator();
+        $translatorFacade = $this->createMock(TranslatorFacadeInterface::class);
+        $translatorFacade->expects($this->any())->method('trans')
+            ->willReturn('Please choose a bucket to upload to');
+
+        $validatorClass = new Validator($translatorFacade);
         $uploadFormData = (new S3UploadBuilder([
             'bucket' => '',
         ]))->build();
-        $formInterface->expects($this->any())->method('getData')->willReturn($uploadFormData);
+
+        $formInterface->expects($this->any())->method('getData')
+            ->willReturn($uploadFormData);
 
         // Act
         $validatorTransfer = $validatorClass->validateUploadFormAndData($formInterface);

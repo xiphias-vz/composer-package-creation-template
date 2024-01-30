@@ -471,6 +471,11 @@ interface S3BucketConstants
     /**
      * @var string
      */
+    public const SORTING = 'Sorting';
+
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_GENERAL_UPLOAD = 's3.upload.error';
 
     /**

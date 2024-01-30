@@ -72,6 +72,11 @@ interface SessionMapperInterface
     public function setDeletedFiles(array $fileNames): void;
 
     /**
+     * @return void
+     */
+    public function clearDeletedFiles(): void;
+
+    /**
      * @return array
      */
     public function getDeletedFiles(): array;

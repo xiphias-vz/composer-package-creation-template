@@ -5,7 +5,7 @@
             <s3-files>
                 <label>S3 files</label>
                 <title>S3 files</title>
-                <bundle>s3-files-gui</bundle>
+                <bundle>s3-file-transfer-zed-gui</bundle>
                 <controller>index</controller>
                 <action>index</action>
                 <visible>1</visible>

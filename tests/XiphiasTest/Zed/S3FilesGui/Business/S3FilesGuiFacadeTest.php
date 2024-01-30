@@ -14,17 +14,14 @@ use Generated\Shared\DataBuilder\S3FilesDeleteRequestBuilder;
 use Generated\Shared\DataBuilder\S3FilesDownloadRequestBuilder;
 use Generated\Shared\DataBuilder\S3FilesResultsBuilder;
 use Generated\Shared\DataBuilder\S3UploadBuilder;
-use PHPUnit\Framework\MockObject\MockObject;
 use Xiphias\Zed\S3FilesGui\Business\Model\ResponseBuilder\DownloadResponseBuilder;
 use XiphiasTest\Zed\S3FilesGui\S3FileGuiBusinessTester;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 
 /**
  * Auto-generated group annotations
  *
- * @group XiphiasTest
+ * @group PyzTest
  * @group Zed
  * @group S3FilesGui
  * @group Business
@@ -38,21 +35,6 @@ class S3FilesGuiFacadeTest extends Unit
      * @var \XiphiasTest\Zed\S3FilesGui\S3FileGuiBusinessTester
      */
     protected S3FileGuiBusinessTester $tester;
-
-    /**
-     * @var string
-     */
-    protected const SERVICE_FORM_FACTORY = 'form.factory';
-
-    /**
-     * @return void
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->registerFormFactoryServiceMock();
-    }
 
     /**
      * @test
@@ -151,8 +133,8 @@ class S3FilesGuiFacadeTest extends Unit
 
         $this->tester->mockEnvironmentConfig('s3-buckets_credentials', [
             'sprykerAdapterClass' => AwsCredentials::class,
-            'key' => 'kwopšđekđghwšerkšgwAKIASXT3N7XBIICJPXLR', // can we use builder for this
-            'secret' => 'zqwepšđrkgđqwšergpjel2b4BMoyOgud5d3LwFD+V1QzboW85of3r2I9', // can we use builder for this
+            'key' => 'randomWrongValue',
+            'secret' => 'randomWrongValue',
         ]);
 
         //Act
@@ -161,7 +143,7 @@ class S3FilesGuiFacadeTest extends Unit
 
         //Assert
         $this->assertNotTrue($s3FileDeleteResponseTransfer->getIsSuccessful());
-        $this->assertEquals('File was not deleted successfully! Please check your S3 credentials, access and user rights for selected bucket.', $s3FileDeleteResponseTransfer->getMessage());
+        $this->assertEquals('s3.delete.error', $s3FileDeleteResponseTransfer->getMessage());
     }
 
     /**
@@ -187,7 +169,7 @@ class S3FilesGuiFacadeTest extends Unit
 
         //Assert
         $this->assertTrue($s3FilesDeleteResponseTransfer->getIsSuccessful());
-        $this->assertEquals('Files: 11.pdf deleted successfully from oase-staging-pdf', $s3FilesDeleteResponseTransfer->getMessage());
+        $this->assertEquals('s3.delete.success', $s3FilesDeleteResponseTransfer->getMessage());
     }
 
     /**
@@ -207,8 +189,8 @@ class S3FilesGuiFacadeTest extends Unit
 
         $this->tester->mockEnvironmentConfig('s3-buckets_credentials', [
             'sprykerAdapterClass' => AwsCredentials::class,
-            'key' => 'kwopšđekđghwšerkšgwAKIASXT3N7XBIICJPXLR',
-            'secret' => 'zqwepšđrkgđqwšergpjel2b4BMoyOgud5d3LwFD+V1QzboW85of3r2I9',
+            'key' => 'randomValue',
+            'secret' => 'randomValue',
         ]);
 
         //Act
@@ -217,7 +199,7 @@ class S3FilesGuiFacadeTest extends Unit
 
         //Assert
         $this->assertNotTrue($s3FileUploadResponseTransfer->getIsSuccessful());
-        $this->assertEquals('File upload has failed! Please check your S3 credentials, access and user rights for selected bucket.', $s3FileUploadResponseTransfer->getMessage());
+        $this->assertEquals('s3.upload.error', $s3FileUploadResponseTransfer->getMessage());
     }
 
     /**
@@ -241,7 +223,7 @@ class S3FilesGuiFacadeTest extends Unit
 
         //Assert
         $this->assertTrue($s3FileUploadResponseTransfer->getIsSuccessful(), 'File Uploaded is successful!');
-        $this->assertEquals('11 successfully uploaded to oase-staging-pdf', $s3FileUploadResponseTransfer->getMessage());
+        $this->assertEquals('s3.upload.success', $s3FileUploadResponseTransfer->getMessage());
     }
 
     /**
@@ -254,10 +236,9 @@ class S3FilesGuiFacadeTest extends Unit
         $this->tester->wantTo('Validate Upload form');
 
         //Arrange
-        $formInterface = $this->getMockBuilder(FormInterface::class)->getMock();
+        $formInterface = $this->createMock(FormInterface::class);
         $formInterface->expects($this->any())->method('isSubmitted')->willReturn(true);
         $formInterface->expects($this->any())->method('isValid')->willReturn(true);
-        $formInterface->method('createView')->willReturn($this->getFormViewMock());
 
         $s3FileUploadTransfer = (new S3UploadBuilder([
             'bucket' => 'oase-staging-pdf',
@@ -319,32 +300,5 @@ class S3FilesGuiFacadeTest extends Unit
 
         // Assert
         $this->assertTrue($s3FilesDownloadResponseTransfer->getIsSuccessful());
-    }
-
-    /**
-     * @param array $formFactoryMethods
-     *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\Form\FormFactoryInterface
-     */
-    private function getFormFactoryMock(array $formFactoryMethods = []): MockObject|FormFactoryInterface
-    {
-        return $this->getMockForAbstractClass(FormFactoryInterface::class, [], '', false, false, true, $formFactoryMethods);
-    }
-
-    /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|(\Symfony\Component\Form\FormView&\PHPUnit\Framework\MockObject\MockObject)
-     */
-    private function getFormViewMock()
-    {
-        return $this->getMockBuilder(FormView::class)->getMock();
-    }
-
-    /**
-     * @return void
-     */
-    private function registerFormFactoryServiceMock(): void
-    {
-        $this->tester->getContainer()
-            ->set(static::SERVICE_FORM_FACTORY, $this->getFormFactoryMock());
     }
 }

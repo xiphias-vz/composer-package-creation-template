@@ -12,4 +12,4 @@ composer require xiphias/s3-files-gui
 
 ## Documentation
 
-[Xiphias Documentation](https://xiphias.atlassian.net/wiki/home)
+[Xiphias Documentation](https://xiphias.atlassian.net/wiki/spaces/SPRYK/pages/1425539076/S3+File+Gui+Documentation)

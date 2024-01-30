@@ -59,10 +59,10 @@ class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3
             $bucketData[static::BUCKET_CONTENTS] = $this->getFilesFromBucket($bucketName, $numberOfRecordsPerRequest, $action);
 
             if ($bucketData[static::BUCKET_CONTENTS] !== null) {
-                $data = $this->defaultTableSearch($bucketData[static::BUCKET_CONTENTS]);
-                if ($action !== static::FILTER) {
-                    $data = $this->orderColumnByDirection($data, $columnOrder);
-                }
+                $data = $this->orderColumnByDirection($bucketData[static::BUCKET_CONTENTS], $columnOrder, $action);
+                $this->saveLoadedTableDataToSession($data);
+
+                $data = $this->defaultTableSearch($data);
 
                 for ($i = $firstRecordIndex; $i < $lastRecordIndex; $i++) {
                     if (array_key_exists($i, $data)) {
@@ -104,13 +104,16 @@ class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3
     {
         switch ($this->sessionMapper->getTableAction()) {
             case static::DELETED_FILES:
-                $this->removeDeletedFilesFromLoadedTableTransfer($this->sessionMapper->getDeletedFiles());
+                if ($this->sessionMapper->getDeletedFiles()) {
+                    $this->removeDeletedFilesFromLoadedTableTransfer($this->sessionMapper->getDeletedFiles());
+                }
 
                 break;
             case static::UPLOADED_FILES:
             case static::LOAD_MORE_DATA:
             case static::PAGING:
             case static::PAGE_LOAD:
+            case static::SORTING:
                 break;
             case static::SHOW_BUTTON:
             case static::CLEAR_FILTER:
@@ -134,6 +137,8 @@ class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3
 
         $modifiedTableData = $this->findAndDeleteItems($loadedTableData->getLoadedTableData(), $deletedFileNames);
         $loadedTableData->setLoadedTableData($modifiedTableData);
+
+        $this->sessionMapper->clearDeletedFiles();
 
         $this->sessionMapper->setLoadedTableData($loadedTableData);
     }
@@ -159,20 +164,36 @@ class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3
     /**
      * @param array $data
      * @param string $order
+     * @param string $action
      *
      * @return array
      */
-    protected function orderColumnByDirection(array $data, string $order): array
+    protected function orderColumnByDirection(array $data, string $order, string $action): array
     {
-        usort($data, function ($a, $b) use ($order) {
-            if ($order === static::COLUMN_ORDER_DIRECTION_DESCENDING) {
-                return $b <=> $a;
-            }
+        if ($action === static::SORTING) {
+            usort($data, function ($a, $b) use ($order) {
+                if ($order === static::COLUMN_ORDER_DIRECTION_DESCENDING) {
+                    return $b <=> $a;
+                }
 
-            return $a <=> $b;
-        });
+                return $a <=> $b;
+            });
+        }
 
         return $data;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return void
+     */
+    protected function saveLoadedTableDataToSession(array $data): void
+    {
+        $loadedTableData = $this->sessionMapper->getLoadMoreTableData();
+        $loadedTableData->setLoadedTableData($data);
+
+        $this->sessionMapper->setLoadedTableData($loadedTableData);
     }
 
     /**
@@ -219,6 +240,10 @@ class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3
         }
 
         $loadedTableData = $loadMoreTableDataTransfer->getLoadedTableData();
+
+        if ($action === static::SORTING) {
+            return $loadedTableData;
+        }
 
         if ($action !== static::PAGING) {
             $nextContinuationToken = $loadMoreTableDataTransfer->getNextContinuationToken();
@@ -447,13 +472,8 @@ class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3
         S3ListObjectsResultTransfer $listObjectsPreviousResultTransfer,
         S3ListObjectsResultTransfer $listObjectsResultTransfer
     ): S3ListObjectsResultTransfer {
-        if ($listObjectsResultTransfer->getContents() || $listObjectsPreviousResultTransfer->getContents()) {
             $listObjectsResultTransfer->setContents(array_merge($listObjectsPreviousResultTransfer->getContents(), $listObjectsResultTransfer->getContents()));
-        }
-
-        if ($listObjectsResultTransfer->getKeyCount() || $listObjectsPreviousResultTransfer->getKeyCount()) {
-            $listObjectsResultTransfer->setKeyCount(($listObjectsPreviousResultTransfer->getKeyCount() ?? 0) + $listObjectsResultTransfer->getKeyCount());
-        }
+            $listObjectsResultTransfer->setKeyCount(($listObjectsPreviousResultTransfer->getKeyCount() ?? 0) + ($listObjectsResultTransfer->getKeyCount() ?? 0));
 
         return $listObjectsResultTransfer;
     }
@@ -486,7 +506,7 @@ class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3
         }
 
         foreach ($bucketContents as $content) {
-            $data[] = $content[static::KEY];
+            $data[] = $content;
         }
 
         return $data;
@@ -502,8 +522,9 @@ class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3
     {
         $data = [];
         foreach ($bucketContents as $content) {
-            if ($this->isSearchStringInFileName($content[static::KEY], $searchString)) {
-                $data[] = $content[static::KEY];
+            $fileName = is_array($content) ? $content[static::KEY] : $content;
+            if ($this->isSearchStringInFileName($fileName, $searchString)) {
+                $data[] = $fileName;
             }
         }
 

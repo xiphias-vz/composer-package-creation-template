@@ -1,9 +1,13 @@
 'use strict';
 
+const hiddenBucketFieldHandler = require('./set-hidden-bucket-field');
 var filterField = $("input[name='filter-field']");
 var downloadSelectedButtonPath = 'button[name="s3_download_delete_selected_form[Download]"]'
 var deleteSelectedButtonPath = 'button[name="s3_download_delete_selected_form[Delete]"]'
 var loadMoreButtonPath = 'button[name="load_more_data_form[LoadData]"]';
+var tablePageLengthPath = '.dataTables_length select';
+var searchAndFilterPath = 'input[type="search"]';
+const storage= window.localStorage;
 const mobileScreenMaxWidth = 475;
 const paginationNumberLengthOnMobile = 5;
 const s3TableUrl = '/s3-files-gui/index/s3-table';
@@ -22,25 +26,32 @@ function initialize() {
                 processing.css('display','none');
             }
 
-            var loadMoreDataButton = $('#load_more_data_form_LoadData');
-
             if(!settings.json.NextContinuationToken){
-                loadMoreDataButton.prop('disabled', true);
+                disableElement(loadMoreButtonPath);
             }
             else{
-                loadMoreDataButton.prop('disabled', false);
+                enableElement(loadMoreButtonPath);
             }
 
             $(".column-s3-bucket_checkbox input[type='checkbox']").on("change", toggleButtonsOnCheckboxSelect);
+
+            $('#s3-bucket_name').on('click', function() {
+                storage.setItem('tableAction', 'Sorting');
+            });
         })
 
         s3FilesTable
             .on('preXhr.dt', function ( e, settings, data ) {
-                $('#load_more_data_form_LoadData').prop('disabled', true);
+                disableElement(loadMoreButtonPath);
                 data.action = 'Paging';
+
+                if(storage.getItem('tableAction') === 'Sorting'){
+                    data.action = 'Sorting';
+                    storage.setItem('tableAction', '');
+                }
             } );
 
-        $('#load_more_data_form_LoadData').on('click', function(event) {
+        $(loadMoreButtonPath).on('click', function(event) {
             var processing = $('.dataTables_processing');
             var clickedButton = event.currentTarget;
 
@@ -126,27 +137,31 @@ function initialize() {
     function addListenerToFormDeleteMultipleButton() {
         let multipleDeleteButton = $(deleteSelectedButtonPath);
         multipleDeleteButton.on('click', () => {
-            $(".btn-modal-delete-single").hide();
-            $(".btn-modal-delete-multiple").show();
+            $(".modal-delete-single-wrapper").hide();
+            $(".modal-delete-multiple-wrapper").show();
       })
     }
     function enableOrDisableFormButtons() {
         disableElement(downloadSelectedButtonPath);
         disableElement(deleteSelectedButtonPath);
+        disableElement(searchAndFilterPath);
+
+        if (hiddenBucketFieldHandler.getS3BucketName()) {
+            enableElement(searchAndFilterPath);
+        }
 
         if (document.querySelector('td.dataTables_empty')) {
-            disableElement('input[type="search"]');
-            disableElement('.dataTables_length select');
+            disableElement(tablePageLengthPath);
             disableElement(loadMoreButtonPath);
         } else {
-            enableElement('input[type="search"]');
-            enableElement('.dataTables_length select');
+            enableElement(tablePageLengthPath);
             enableElement(loadMoreButtonPath);
         }
     }
+
     function enableElement(path) {
-        $(path).prop('disabled', false);
         $(path).removeClass('disabled');
+        $(path).prop('disabled', false);
     }
     function disableElement(path) {
         $(path).addClass('disabled');
@@ -168,8 +183,8 @@ function initialize() {
         modalButton.href = deleteActionUrl;
     }
     function displayModal() {
-        $('.btn-modal-delete-single').show();
-        $('.btn-modal-delete-multiple').hide();
+        $('.modal-delete-single-wrapper').show();
+        $('.modal-delete-multiple-wrapper').hide();
         $('.confirm-delete-modal').modal('show');
     }
 

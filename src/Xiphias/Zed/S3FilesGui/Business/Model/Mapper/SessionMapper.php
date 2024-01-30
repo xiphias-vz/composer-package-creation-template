@@ -122,6 +122,14 @@ class SessionMapper implements SessionMapperInterface, S3BucketFormConstants, S3
     }
 
     /**
+     * @return void
+     */
+    public function clearDeletedFiles(): void
+    {
+        $this->sessionClient->remove(static::DELETED_FILES);
+    }
+
+    /**
      * @return array
      */
     public function getDeletedFiles(): array

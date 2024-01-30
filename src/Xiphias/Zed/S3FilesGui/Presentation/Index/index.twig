@@ -1,6 +1,6 @@
 {% extends '@Gui/Layout/layout.twig' %}
 
-{% set title = 'Overview of available S3 buckets' | trans %}
+{% set title = 's3.main.title' | trans %}
 
 {% block head_css %}
     {{ parent() }}
@@ -12,7 +12,7 @@
 
     <div class="s3-form-container">
         <div>
-            {% embed '@Gui/Partials/widget.twig' with { widget_title: 'S3 Buckets' | trans } %}
+            {% embed '@Gui/Partials/widget.twig' with { widget_title: 's3.bucket.widget.title' | trans } %}
                 {% block widget_content %}
                     {{ form_start(S3BucketForm, {'method': 'POST' }) }}
                     {{ form_widget(S3BucketForm.s3_bucket_field, {'value': chosenBucket }) }}
@@ -22,7 +22,7 @@
         </div>
         <div>
 
-            {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Upload file to S3 bucket' | trans } %}
+            {% embed '@Gui/Partials/widget.twig' with { widget_title: 's3.upload.widget.title' | trans } %}
                 {% block widget_content %}
                     {{  form_start(S3UploadForm, {'method': 'POST'}) }}
                     {{  form_end(S3UploadForm) }}
@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'List of S3 files' | trans } %}
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 's3.table.widget.title' | trans } %}
         {% block widget_content %}
 
             <div class="filter-wrapper">
@@ -52,7 +52,8 @@
                 <div class="col col-lg-4 col-md-4 col-sm-12">
                     <form name="load_more_data_form" method="post" action="/s3-files-gui/index/load-data" id="load_more_data_form">
                         <div class="form-group">
-                            <button type="button" id="load_more_data_form_LoadData" name="load_more_data_form[LoadData]" class="btn btn-outline btn-w-m btn">Load data</button>
+                            <button type="button" id="load_more_data_form_LoadData" name="load_more_data_form[LoadData]"
+                                    class="btn btn-outline btn-w-m btn disabled" disabled>{{ 's3.button.load' | trans }}</button>
                         </div>
                     </form>
                 </div>

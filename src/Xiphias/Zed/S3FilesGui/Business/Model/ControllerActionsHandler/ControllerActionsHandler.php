@@ -118,6 +118,7 @@ class ControllerActionsHandler implements ControllerActionsHandlerInterface, S3B
             )
             ->handleRequest($request);
 
+        $this->sessionMapper->clearUsedFilterStrings();
         $this->s3BucketFormDataProvider->handleFormAndTableData($s3BucketForm);
 
         return $s3BucketForm;

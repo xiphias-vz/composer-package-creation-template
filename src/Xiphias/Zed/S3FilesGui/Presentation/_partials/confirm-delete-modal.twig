@@ -16,8 +16,10 @@
                 <hr>
                 <div>
                     <ul class="list-inline m-b-none">
-                        <li><a href="#" class="btn btn-modal-delete btn-modal-delete-single" >{{ 's3.delete.file.confirm' | trans }}</a></li>
-                        <li>
+                        <li class="modal-delete-single-wrapper">
+                            <a href="#" class="btn btn-modal-delete btn-modal-delete-single" >{{ 's3.delete.file.confirm' | trans }}</a>
+                        </li>
+                        <li class="modal-delete-multiple-wrapper">
                             <button form="scope_handle_selected_files" type="submit" class="btn btn-modal-delete btn-modal-delete-multiple"
                                     name='s3_download_delete_selected_form[Delete]'>
                                 {{ 's3.delete.multiple.confirm' | trans }}

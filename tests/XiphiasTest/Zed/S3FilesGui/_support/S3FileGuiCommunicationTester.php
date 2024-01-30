@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace XiphiasTest\Zed\S3FilesGui;
 
 use Codeception\Actor;
-use Spryker\Client\Session\SessionClientInterface;
 
 /**
  * Inherited Methods
@@ -31,12 +30,4 @@ use Spryker\Client\Session\SessionClientInterface;
 class S3FileGuiCommunicationTester extends Actor
 {
     use _generated\S3FileGuiCommunicationTesterActions;
-
-    /**
-     * @return \Spryker\Client\Session\SessionClientInterface
-     */
-    public function getSessionClient(): SessionClientInterface
-    {
-        return $this->getLocator()->session()->client();
-    }
 }
