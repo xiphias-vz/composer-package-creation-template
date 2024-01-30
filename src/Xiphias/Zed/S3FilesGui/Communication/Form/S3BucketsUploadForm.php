@@ -75,13 +75,12 @@ class S3BucketsUploadForm extends AbstractType implements S3BucketConstants, S3B
      */
     protected function addUploadButton(FormBuilderInterface $builder): void
     {
-        $builder->add(
-            $this->getFactory()->getTranslatorFacade()->trans(static::BUTTON_UPLOAD_LABEL),
-            SubmitType::class,
+        $builder->add(static::BUTTON_UPLOAD, SubmitType::class,
             [
-            'attr' => [
-                'class' => static::BUTTON_PRIMARY_SUBMIT_CLASS,
-            ],
+                'label' => static::BUTTON_UPLOAD_LABEL,
+                'attr' => [
+                    'class' => static::BUTTON_PRIMARY_SUBMIT_CLASS,
+                ],
             ],
         );
     }

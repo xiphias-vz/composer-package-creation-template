@@ -119,6 +119,11 @@ interface S3BucketFormConstants
     /**
      * @var string
      */
+    public const BUTTON_SHOW_FILES = 's3-button-show';
+
+    /**
+     * @var string
+     */
     public const BUTTON_SHOW_FILES_LABEL = 's3.button.show';
 
     /**
@@ -134,12 +139,27 @@ interface S3BucketFormConstants
     /**
      * @var string
      */
+    public const BUTTON_UPLOAD = 's3-button-upload';
+
+    /**
+     * @var string
+     */
     public const BUTTON_UPLOAD_LABEL = 's3.button.upload';
 
     /**
      * @var string
      */
+    public const BUTTON_DOWNLOAD = 's3-button-download';
+
+    /**
+     * @var string
+     */
     public const BUTTON_DOWNLOAD_LABEL = 's3.button.download';
+
+    /**
+     * @var string
+     */
+    public const BUTTON_DELETE = 's3-button-delete';
 
     /**
      * @var string
