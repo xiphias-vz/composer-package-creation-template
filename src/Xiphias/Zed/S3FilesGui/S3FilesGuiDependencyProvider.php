@@ -45,7 +45,6 @@ class S3FilesGuiDependencyProvider extends AbstractBundleDependencyProvider impl
 
         $container = $this->addSessionClient($container);
         $container = $this->addS3Client($container);
-        $container = $this->addTranslatorFacade($container);
 
         return $container;
     }

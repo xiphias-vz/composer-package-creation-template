@@ -29,18 +29,6 @@ input.filter-field {
     margin-right: 10px;
 }
 
-@media only screen and (max-width: 430px) {
-    select.s3-bucket-select-field {
-        width: 100%;
-    }
-
-    input.filter-field {
-        width: 100%;
-        margin: 4px 0 8px 0 ;
-
-    }
-}
-
 div.ibox-content {
     min-height: 15rem;
 }
@@ -112,5 +100,57 @@ td.column-s3-bucket_actions {
     display: none;
 }
 
+@media only screen and (max-width: 430px) {
+    select.s3-bucket-select-field {
+        width: 100%;
+    }
 
+    input.filter-field {
+        width: 90%;
+        margin: 4px 0 8px 0 ;
+
+    }
+
+    .confirm-delete-modal {
+        width: 315px;
+    }
+
+    button.btn-modal-delete-multiple {
+        margin-bottom: 12px !important;
+    }
+
+    form#scope_handle_selected_files {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    button#s3_download_delete_selected_form_Delete {
+        margin-left: 0;
+    }
+
+    #load_more_data_form{
+        justify-content: center;
+    }
+
+    div.filter-wrapper {
+        justify-content: center;
+    }
+
+    div.alignment-helper {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+    div.ibox-content form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    div.form-group {
+        align-self: center;
+    }
+
+}
 
