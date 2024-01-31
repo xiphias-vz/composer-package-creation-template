@@ -176,12 +176,4 @@ class S3FilesGuiCommunicationFactory extends AbstractCommunicationFactory
     {
         return $this->getProvidedDependency(S3FilesGuiDependencyProvider::CLIENT_S3);
     }
-
-    /**
-     * @return \Spryker\Zed\Translator\Business\TranslatorFacadeInterface
-     */
-    public function getTranslatorFacade(): TranslatorFacadeInterface
-    {
-        return $this->getProvidedDependency(S3FilesGuiDependencyProvider::FACADE_TRANSLATOR);
-    }
 }

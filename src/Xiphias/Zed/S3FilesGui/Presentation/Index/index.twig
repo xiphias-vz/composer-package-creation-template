@@ -38,7 +38,9 @@
                 <label for="filter-field"> {{ 's3.filter.label' | trans }} </label>
                 <input type="search" class="form-control input-sm filter-field" name="filter-field" id="filter-field"
                        value="{{ filterParam }}" placeholder="{{ 's3.filter.placeholder' | trans }}">
-                <button type="button" value="clear-filter" class="btn btn-primary btn-w-m btn-clear-filter">{{ 's3.filter.clear' | trans }}</button>
+                <div class="alignment-helper">
+                    <button type="button" value="clear-filter" class="btn btn-primary btn-w-m btn-clear-filter">{{ 's3.filter.clear' | trans }}</button>
+                </div>
             </div>
 
             {{ S3BucketTable | raw }}
