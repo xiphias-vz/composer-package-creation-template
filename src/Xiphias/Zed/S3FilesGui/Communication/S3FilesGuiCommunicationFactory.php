@@ -29,7 +29,6 @@ use Xiphias\Zed\S3FilesGui\Communication\Table\S3BucketTable;
 use Xiphias\Zed\S3FilesGui\S3FilesGuiDependencyProvider;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
-use Spryker\Zed\Translator\Business\TranslatorFacadeInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 
