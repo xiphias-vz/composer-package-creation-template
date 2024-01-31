@@ -29,7 +29,6 @@ use Xiphias\Zed\S3FilesGui\Communication\Table\S3BucketTable;
 use Xiphias\Zed\S3FilesGui\S3FilesGuiDependencyProvider;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
-use Spryker\Zed\Translator\Business\TranslatorFacadeInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -175,13 +174,5 @@ class S3FilesGuiCommunicationFactory extends AbstractCommunicationFactory
     public function getS3Client(): S3Client
     {
         return $this->getProvidedDependency(S3FilesGuiDependencyProvider::CLIENT_S3);
-    }
-
-    /**
-     * @return \Spryker\Zed\Translator\Business\TranslatorFacadeInterface
-     */
-    public function getTranslatorFacade(): TranslatorFacadeInterface
-    {
-        return $this->getProvidedDependency(S3FilesGuiDependencyProvider::FACADE_TRANSLATOR);
     }
 }

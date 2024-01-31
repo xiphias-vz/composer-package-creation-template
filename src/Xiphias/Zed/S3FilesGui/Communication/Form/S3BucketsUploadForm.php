@@ -60,7 +60,10 @@ class S3BucketsUploadForm extends AbstractType implements S3BucketConstants, S3B
      */
     protected function addUploadField(FormBuilderInterface $builder): void
     {
-        $builder->add(static::UPLOADED_FILE, FileType::class, [
+        $builder->add(
+            static::UPLOADED_FILE,
+            FileType::class,
+            [
             'label' => false,
             'constraints' => [
                 $this->createNotBlankConstraint(),

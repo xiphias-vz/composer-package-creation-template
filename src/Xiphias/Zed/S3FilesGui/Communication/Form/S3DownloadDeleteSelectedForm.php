@@ -43,7 +43,9 @@ class S3DownloadDeleteSelectedForm extends AbstractType implements S3BucketFormC
      */
     public function addDownloadSelectedButton(FormBuilderInterface $builder): void
     {
-        $builder->add(static::BUTTON_DOWNLOAD, SubmitType::class,
+        $builder->add(
+            static::BUTTON_DOWNLOAD,
+            SubmitType::class,
             [
                 'label' => static::BUTTON_DOWNLOAD_LABEL,
                 'attr' => [
@@ -61,7 +63,9 @@ class S3DownloadDeleteSelectedForm extends AbstractType implements S3BucketFormC
      */
     public function addDeleteSelectedButton(FormBuilderInterface $builder): void
     {
-        $builder->add(static::BUTTON_DELETE, ButtonType::class,
+        $builder->add(
+            static::BUTTON_DELETE,
+            ButtonType::class,
             [
                 'label' => static::BUTTON_DOWNLOAD_LABEL,
                 'attr' => [
