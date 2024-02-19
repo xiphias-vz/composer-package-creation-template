@@ -67,7 +67,7 @@ class S3DownloadDeleteSelectedForm extends AbstractType implements S3BucketFormC
             static::BUTTON_DELETE,
             ButtonType::class,
             [
-                'label' => static::BUTTON_DOWNLOAD_LABEL,
+                'label' => static::BUTTON_DELETE_LABEL,
                 'attr' => [
                     'class' => static::DELETE_SELECTED_BUTTON_CLASSES_DISABLED,
                     'data-toggle' => static::DATA_TOGGLE_MODAL,
