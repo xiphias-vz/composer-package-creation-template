@@ -229,11 +229,11 @@ class ControllerActionsHandler implements ControllerActionsHandlerInterface, S3B
     public function downloadDeleteRedirect(Request $request): string
     {
         $downloadDeleteSelectedFormData = $request->get(static::S3_DOWNLOAD_DELETE_SELECTED_FORM);
-        if (array_key_exists(static::DOWNLOAD, $downloadDeleteSelectedFormData)) {
+        if (array_key_exists(static::BUTTON_DOWNLOAD, $downloadDeleteSelectedFormData)) {
             return static::ROUTE_DOWNLOAD;
         }
 
-        if (array_key_exists(static::DELETE, $downloadDeleteSelectedFormData)) {
+        if (array_key_exists(static::BUTTON_DELETE, $downloadDeleteSelectedFormData)) {
             return static::ROUTE_DELETE;
         }
 
