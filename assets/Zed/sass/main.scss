@@ -100,6 +100,10 @@ td.column-s3-bucket_actions {
     display: none;
 }
 
+form div.form-group {
+    padding: 0 5px 0 5px;
+}
+
 @media only screen and (max-width: 430px) {
     select.s3-bucket-select-field {
         width: 100%;

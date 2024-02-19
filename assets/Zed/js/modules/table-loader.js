@@ -2,8 +2,8 @@
 
 const hiddenBucketFieldHandler = require('./set-hidden-bucket-field');
 var filterField = $("input[name='filter-field']");
-var downloadSelectedButtonPath = 'button[name="s3_download_delete_selected_form[Download]"]'
-var deleteSelectedButtonPath = 'button[name="s3_download_delete_selected_form[Delete]"]'
+var downloadSelectedButtonPath = 'button[name="s3_download_delete_selected_form[s3-button-download]"]'
+var deleteSelectedButtonPath = 'button[name="s3_download_delete_selected_form[s3-button-delete]"]'
 var loadMoreButtonPath = 'button[name="load_more_data_form[LoadData]"]';
 var tablePageLengthPath = '.dataTables_length select';
 var searchAndFilterPath = 'input[type="search"]';
