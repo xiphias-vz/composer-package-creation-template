@@ -13,15 +13,15 @@ use Aws\Exception\AwsException;
 use Aws\S3\S3Client;
 use Generated\Shared\Transfer\S3FilesDeleteRequestTransfer;
 use Generated\Shared\Transfer\S3FilesDeleteResponseTransfer;
-use Xiphias\Shared\S3FilesGui\S3BucketConstants;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesDeleteMapperInterface;
 use Spryker\Zed\Translator\Business\TranslatorFacadeInterface;
+use Xiphias\Shared\S3FilesGui\S3BucketConstants;
+use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Delete\S3FilesDeleteMapperInterface;
 
 class S3FilesDeleter implements S3FilesDeleterInterface, S3BucketConstants
 {
     /**
      * @param \Aws\S3\S3Client $s3Client
-     * @param \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesDeleteMapperInterface $deleteMapper
+     * @param \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Delete\S3FilesDeleteMapperInterface $deleteMapper
      * @param \Spryker\Zed\Translator\Business\TranslatorFacadeInterface $translatorFacade
      */
     public function __construct(

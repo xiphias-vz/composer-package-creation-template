@@ -11,9 +11,9 @@ namespace Xiphias\Zed\S3FilesGui\Communication\Table;
 
 use Xiphias\Shared\S3FilesGui\S3BucketConstants;
 use Xiphias\Shared\S3FilesGui\S3BucketFormConstants;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\SessionMapperInterface;
-use Xiphias\Zed\S3FilesGui\Business\Model\TableDataLoader\TableDataLoaderInterface;
 use Xiphias\Zed\S3FilesGui\Communication\Form\DataProvider\S3BucketFormDataProvider;
+use Xiphias\Zed\S3FilesGui\Communication\Mapper\Session\SessionMapperInterface;
+use Xiphias\Zed\S3FilesGui\Communication\Table\TableDataLoader\TableDataLoaderInterface;
 use Xiphias\Zed\S3FilesGui\S3FilesGuiConfig;
 use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\AbstractTable;
@@ -22,10 +22,8 @@ use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 class S3BucketTable extends AbstractTable implements S3BucketConstants, S3BucketFormConstants
 {
     /**
-     * @param \Xiphias\Zed\S3FilesGui\Communication\Form\DataProvider\S3BucketFormDataProvider $s3BucketFormDataProvider
-     * @param \Xiphias\Zed\S3FilesGui\Business\Model\TableDataLoader\TableDataLoaderInterface $tableDataLoader
-     * @param \Xiphias\Zed\S3FilesGui\S3FilesGuiConfig $s3FilesGuiConfig
-     * @param \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\SessionMapperInterface $sessionMapper
+     * @param S3BucketFormDataProvider $s3BucketFormDataProvider
+     * @param S3FilesGuiConfig $s3FilesGuiConfig
      */
     public function __construct(
         protected S3BucketFormDataProvider $s3BucketFormDataProvider,

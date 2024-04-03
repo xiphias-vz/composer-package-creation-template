@@ -13,22 +13,22 @@ use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
 use Generated\Shared\Transfer\S3UploadResponseTransfer;
 use Generated\Shared\Transfer\S3UploadTransfer;
+use Spryker\Zed\Translator\Business\TranslatorFacadeInterface;
 use Xiphias\Shared\S3FilesGui\S3BucketConstants;
 use Xiphias\Shared\S3FilesGui\S3BucketFormConstants;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesMapperInterface;
-use Spryker\Zed\Translator\Business\TranslatorFacadeInterface;
+use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Upload\S3FilesUploadMapperInterface;
 
 class S3FilesUploader implements S3FilesUploaderInterface, S3BucketConstants, S3BucketFormConstants
 {
     /**
      * @param \Aws\S3\S3Client $s3Client
-     * @param \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesMapperInterface $filesMapper
+     * @param \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Upload\S3FilesUploadMapperInterface $filesMapper
      * @param \Spryker\Zed\Translator\Business\TranslatorFacadeInterface $translatorFacade
      */
     public function __construct(
-        protected S3Client $s3Client,
-        protected S3FilesMapperInterface $filesMapper,
-        protected TranslatorFacadeInterface $translatorFacade
+        protected S3Client                     $s3Client,
+        protected S3FilesUploadMapperInterface $filesMapper,
+        protected TranslatorFacadeInterface    $translatorFacade
     ) {
     }
 

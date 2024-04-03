@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Xiphias\Zed\S3FilesGui\Business\Model\Mapper;
+namespace Xiphias\Zed\S3FilesGui\Communication\Mapper;
 
 use Aws\Result;
 use Generated\Shared\Transfer\LoadMoreDataTransfer;
@@ -17,19 +17,6 @@ use Generated\Shared\Transfer\S3UploadTransfer;
 
 interface S3FilesMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\S3UploadTransfer $uploadTransfer
-     * @param bool $isSuccessful
-     * @param string $message
-     *
-     * @return \Generated\Shared\Transfer\S3UploadResponseTransfer
-     */
-    public function mapMessageToNewUploadResponseTransfer(
-        S3UploadTransfer $uploadTransfer,
-        bool $isSuccessful,
-        string $message
-    ): S3UploadResponseTransfer;
-
     /**
      * @param string $nextContinuationToken
      * @param array $bucketData

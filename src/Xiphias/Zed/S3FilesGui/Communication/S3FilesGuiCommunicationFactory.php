@@ -11,26 +11,26 @@ namespace Xiphias\Zed\S3FilesGui\Communication;
 
 use Aws\S3\S3Client;
 use Generated\Shared\Transfer\S3UploadTransfer;
-use Xiphias\Zed\S3FilesGui\Business\Model\ControllerActionsHandler\ControllerActionsHandler;
-use Xiphias\Zed\S3FilesGui\Business\Model\ControllerActionsHandler\ControllerActionsHandlerInterface;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesMapper;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesMapperInterface;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\SessionMapper;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\SessionMapperInterface;
-use Xiphias\Zed\S3FilesGui\Business\Model\TableDataLoader\TableDataLoader;
-use Xiphias\Zed\S3FilesGui\Business\Model\TableDataLoader\TableDataLoaderInterface;
-use Xiphias\Zed\S3FilesGui\Communication\Form\DataProvider\S3BucketFormDataProvider;
-use Xiphias\Zed\S3FilesGui\Communication\Form\S3BucketsForm;
-use Xiphias\Zed\S3FilesGui\Communication\Form\S3BucketsUploadForm;
-use Xiphias\Zed\S3FilesGui\Communication\Form\S3DownloadDeleteSelectedForm;
-use Xiphias\Zed\S3FilesGui\Communication\Mapper\S3FilesRequestMapper;
-use Xiphias\Zed\S3FilesGui\Communication\Mapper\S3FilesRequestMapperInterface;
-use Xiphias\Zed\S3FilesGui\Communication\Table\S3BucketTable;
-use Xiphias\Zed\S3FilesGui\S3FilesGuiDependencyProvider;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Xiphias\Zed\S3FilesGui\Communication\ControllerActionsHandler\ControllerActionsHandler;
+use Xiphias\Zed\S3FilesGui\Communication\ControllerActionsHandler\ControllerActionsHandlerInterface;
+use Xiphias\Zed\S3FilesGui\Communication\Form\DataProvider\S3BucketFormDataProvider;
+use Xiphias\Zed\S3FilesGui\Communication\Form\S3BucketsForm;
+use Xiphias\Zed\S3FilesGui\Communication\Form\S3BucketsUploadForm;
+use Xiphias\Zed\S3FilesGui\Communication\Form\S3DownloadDeleteSelectedForm;
+use Xiphias\Zed\S3FilesGui\Communication\Mapper\Request\S3FilesRequestMapper;
+use Xiphias\Zed\S3FilesGui\Communication\Mapper\Request\S3FilesRequestMapperInterface;
+use Xiphias\Zed\S3FilesGui\Communication\Mapper\S3FilesMapper;
+use Xiphias\Zed\S3FilesGui\Communication\Mapper\S3FilesMapperInterface;
+use Xiphias\Zed\S3FilesGui\Communication\Mapper\Session\SessionMapper;
+use Xiphias\Zed\S3FilesGui\Communication\Mapper\Session\SessionMapperInterface;
+use Xiphias\Zed\S3FilesGui\Communication\Table\S3BucketTable;
+use Xiphias\Zed\S3FilesGui\Communication\Table\TableDataLoader\TableDataLoader;
+use Xiphias\Zed\S3FilesGui\Communication\Table\TableDataLoader\TableDataLoaderInterface;
+use Xiphias\Zed\S3FilesGui\S3FilesGuiDependencyProvider;
 
 /**
  * @method \Xiphias\Zed\S3FilesGui\S3FilesGuiConfig getConfig()
@@ -110,7 +110,7 @@ class S3FilesGuiCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @return \Xiphias\Zed\S3FilesGui\Communication\Mapper\S3FilesRequestMapperInterface
+     * @return \Xiphias\Zed\S3FilesGui\Communication\Mapper\Request\S3FilesRequestMapperInterface
      */
     public function createS3FilesRequestMapper(): S3FilesRequestMapperInterface
     {
@@ -118,7 +118,7 @@ class S3FilesGuiCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @return \Xiphias\Zed\S3FilesGui\Business\Model\TableDataLoader\TableDataLoaderInterface
+     * @return TableDataLoaderInterface
      */
     public function createTableDataLoader(): TableDataLoaderInterface
     {
@@ -130,7 +130,7 @@ class S3FilesGuiCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @return \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesMapperInterface
+     * @return \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Upload\S3FilesUploadMapperInterface
      */
     public function createS3FilesMapper(): S3FilesMapperInterface
     {
@@ -138,7 +138,7 @@ class S3FilesGuiCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @return \Xiphias\Zed\S3FilesGui\Business\Model\ControllerActionsHandler\ControllerActionsHandlerInterface
+     * @return ControllerActionsHandlerInterface
      */
     public function createControllerActionsHandler(): ControllerActionsHandlerInterface
     {

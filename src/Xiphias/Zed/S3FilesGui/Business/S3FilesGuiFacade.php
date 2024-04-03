@@ -18,6 +18,7 @@ use Generated\Shared\Transfer\S3UploadTransfer;
 use Generated\Shared\Transfer\S3UploadValidatorTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 use Symfony\Component\Form\FormInterface;
+use Xiphias\Zed\S3FilesGui\Business\Model\ControllerActionsHandler\ControllerActionsHandlerInterface;
 
 /**
  * @method \Xiphias\Zed\S3FilesGui\Business\S3FilesGuiBusinessFactory getFactory()

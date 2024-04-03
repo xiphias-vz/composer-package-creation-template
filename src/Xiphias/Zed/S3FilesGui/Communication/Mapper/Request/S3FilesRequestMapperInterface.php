@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Xiphias\Zed\S3FilesGui\Communication\Mapper;
+namespace Xiphias\Zed\S3FilesGui\Communication\Mapper\Request;
 
 use Generated\Shared\Transfer\S3FilesDeleteRequestTransfer;
 use Generated\Shared\Transfer\S3FilesDownloadRequestTransfer;

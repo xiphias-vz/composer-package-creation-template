@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Xiphias\Zed\S3FilesGui\Business\Model\Mapper;
+namespace Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Download;
 
 use Aws\Result;
 use Generated\Shared\Transfer\S3DownloadResultTransfer;

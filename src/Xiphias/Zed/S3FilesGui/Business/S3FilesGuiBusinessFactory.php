@@ -10,18 +10,22 @@ declare(strict_types=1);
 namespace Xiphias\Zed\S3FilesGui\Business;
 
 use Aws\S3\S3Client;
+use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
+use Spryker\Zed\Translator\Business\TranslatorFacadeInterface;
 use Xiphias\Zed\S3FilesGui\Business\Model\Archiver\S3FilesArchiver;
 use Xiphias\Zed\S3FilesGui\Business\Model\Archiver\S3FilesArchiverInterface;
+use Xiphias\Zed\S3FilesGui\Business\Model\ControllerActionsHandler\ControllerActionsHandler;
+use Xiphias\Zed\S3FilesGui\Business\Model\ControllerActionsHandler\ControllerActionsHandlerInterface;
 use Xiphias\Zed\S3FilesGui\Business\Model\Deleter\S3FilesDeleter;
 use Xiphias\Zed\S3FilesGui\Business\Model\Deleter\S3FilesDeleterInterface;
 use Xiphias\Zed\S3FilesGui\Business\Model\Downloader\S3FilesDownloader;
 use Xiphias\Zed\S3FilesGui\Business\Model\Downloader\S3FilesDownloaderInterface;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesDeleteMapper;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesDeleteMapperInterface;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesDownloadMapper;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesDownloadMapperInterface;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesMapper;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesMapperInterface;
+use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Delete\S3FilesDeleteMapper;
+use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Delete\S3FilesDeleteMapperInterface;
+use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Download\S3FilesDownloadMapper;
+use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Download\S3FilesDownloadMapperInterface;
+use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Upload\S3FilesUploadMapper;
+use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Upload\S3FilesUploadMapperInterface;
 use Xiphias\Zed\S3FilesGui\Business\Model\ResponseBuilder\DownloadResponseBuilder;
 use Xiphias\Zed\S3FilesGui\Business\Model\ResponseBuilder\DownloadResponseBuilderInterface;
 use Xiphias\Zed\S3FilesGui\Business\Model\Uploader\S3FilesUploader;
@@ -29,8 +33,6 @@ use Xiphias\Zed\S3FilesGui\Business\Model\Uploader\S3FilesUploaderInterface;
 use Xiphias\Zed\S3FilesGui\Business\Model\Validator\Validator;
 use Xiphias\Zed\S3FilesGui\Business\Model\Validator\ValidatorInterface;
 use Xiphias\Zed\S3FilesGui\S3FilesGuiDependencyProvider;
-use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
-use Spryker\Zed\Translator\Business\TranslatorFacadeInterface;
 use ZipArchive;
 
 /**
@@ -98,15 +100,15 @@ class S3FilesGuiBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesMapperInterface
+     * @return \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Upload\S3FilesUploadMapperInterface
      */
-    public function createS3FilesMapper(): S3FilesMapperInterface
+    public function createS3FilesMapper(): S3FilesUploadMapperInterface
     {
-        return new S3FilesMapper();
+        return new S3FilesUploadMapper();
     }
 
     /**
-     * @return \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesDeleteMapperInterface
+     * @return \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Delete\S3FilesDeleteMapperInterface
      */
     public function createS3FilesDeleteMapper(): S3FilesDeleteMapperInterface
     {
@@ -126,7 +128,7 @@ class S3FilesGuiBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesDownloadMapperInterface
+     * @return \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Download\S3FilesDownloadMapperInterface
      */
     public function createDownloadMapper(): S3FilesDownloadMapperInterface
     {

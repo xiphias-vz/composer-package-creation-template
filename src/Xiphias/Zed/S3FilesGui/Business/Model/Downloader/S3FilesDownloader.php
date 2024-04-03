@@ -17,7 +17,7 @@ use Generated\Shared\Transfer\S3FilesDownloadResponseTransfer;
 use Generated\Shared\Transfer\S3FilesResultsTransfer;
 use Xiphias\Shared\S3FilesGui\S3BucketConstants;
 use Xiphias\Zed\S3FilesGui\Business\Model\Archiver\S3FilesArchiverInterface;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesDownloadMapperInterface;
+use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Download\S3FilesDownloadMapperInterface;
 use Xiphias\Zed\S3FilesGui\Business\Model\ResponseBuilder\DownloadResponseBuilderInterface;
 
 class S3FilesDownloader implements S3FilesDownloaderInterface, S3BucketConstants
@@ -26,7 +26,7 @@ class S3FilesDownloader implements S3FilesDownloaderInterface, S3BucketConstants
      * @param \Xiphias\Zed\S3FilesGui\Business\Model\Archiver\S3FilesArchiverInterface $archiver
      * @param \Xiphias\Zed\S3FilesGui\Business\Model\ResponseBuilder\DownloadResponseBuilderInterface $responseBuilder
      * @param \Aws\S3\S3Client $s3Client
-     * @param \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesDownloadMapperInterface $downloadMapper
+     * @param \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\Download\S3FilesDownloadMapperInterface $downloadMapper
      */
     public function __construct(
         protected S3FilesArchiverInterface $archiver,

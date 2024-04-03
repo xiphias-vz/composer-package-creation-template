@@ -5,7 +5,7 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace Xiphias\Zed\S3FilesGui\Business\Model\TableDataLoader;
+namespace Xiphias\Zed\S3FilesGui\Communication\Table\TableDataLoader;
 
 use Aws\S3\S3Client;
 use Generated\Shared\Transfer\CustomDataTableTransfer;
@@ -13,16 +13,16 @@ use Generated\Shared\Transfer\LoadMoreDataTransfer;
 use Generated\Shared\Transfer\S3ListObjectsResultTransfer;
 use Xiphias\Shared\S3FilesGui\S3BucketConstants;
 use Xiphias\Shared\S3FilesGui\S3BucketFormConstants;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesMapperInterface;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\SessionMapperInterface;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
+use Xiphias\Zed\S3FilesGui\Communication\Mapper\S3FilesMapperInterface;
+use Xiphias\Zed\S3FilesGui\Communication\Mapper\Session\SessionMapperInterface;
 
 class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3BucketFormConstants
 {
     /**
-     * @param \Aws\S3\S3Client $s3Client
-     * @param \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\SessionMapperInterface $sessionMapper
-     * @param \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\S3FilesMapperInterface $fileMapper
+     * @param S3Client $s3Client
+     * @param SessionMapperInterface $sessionMapper
+     * @param S3FilesMapperInterface $fileMapper
      */
     public function __construct(
         protected S3Client $s3Client,
@@ -472,8 +472,8 @@ class TableDataLoader implements TableDataLoaderInterface, S3BucketConstants, S3
         S3ListObjectsResultTransfer $listObjectsPreviousResultTransfer,
         S3ListObjectsResultTransfer $listObjectsResultTransfer
     ): S3ListObjectsResultTransfer {
-            $listObjectsResultTransfer->setContents(array_merge($listObjectsPreviousResultTransfer->getContents(), $listObjectsResultTransfer->getContents()));
-            $listObjectsResultTransfer->setKeyCount(($listObjectsPreviousResultTransfer->getKeyCount() ?? 0) + ($listObjectsResultTransfer->getKeyCount() ?? 0));
+        $listObjectsResultTransfer->setContents(array_merge($listObjectsPreviousResultTransfer->getContents(), $listObjectsResultTransfer->getContents()));
+        $listObjectsResultTransfer->setKeyCount(($listObjectsPreviousResultTransfer->getKeyCount() ?? 0) + ($listObjectsResultTransfer->getKeyCount() ?? 0));
 
         return $listObjectsResultTransfer;
     }

@@ -12,8 +12,8 @@ namespace Xiphias\Zed\S3FilesGui\Communication\Form\DataProvider;
 use Aws\S3\S3Client;
 use Xiphias\Shared\S3FilesGui\S3BucketConstants;
 use Xiphias\Shared\S3FilesGui\S3BucketFormConstants;
-use Xiphias\Zed\S3FilesGui\Business\Model\Mapper\SessionMapperInterface;
-use Xiphias\Zed\S3FilesGui\Business\Model\TableDataLoader\TableDataLoaderInterface;
+use Xiphias\Zed\S3FilesGui\Communication\Mapper\Session\SessionMapperInterface;
+use Xiphias\Zed\S3FilesGui\Communication\Table\TableDataLoader\TableDataLoaderInterface;
 use Xiphias\Zed\S3FilesGui\Communication\Table\S3BucketTable;
 use Symfony\Component\Form\FormInterface;
 
@@ -25,9 +25,9 @@ class S3BucketFormDataProvider implements S3BucketConstants, S3BucketFormConstan
     protected ?string $tableIdentifier;
 
     /**
-     * @param \Aws\S3\S3Client $s3Client
-     * @param \Xiphias\Zed\S3FilesGui\Business\Model\Mapper\SessionMapperInterface $sessionMapper
-     * @param \Xiphias\Zed\S3FilesGui\Business\Model\TableDataLoader\TableDataLoaderInterface $tableDataLoader
+     * @param S3Client $s3Client
+     * @param SessionMapperInterface $sessionMapper
+     * @param TableDataLoaderInterface $tableDataLoader
      */
     public function __construct(
         protected S3Client $s3Client,
